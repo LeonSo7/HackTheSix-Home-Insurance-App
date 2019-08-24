@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-export default class AddAssets extends Component {
+export default class AssetScreen extends Component {
   render() {
     return (
       <View>
