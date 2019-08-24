@@ -24,7 +24,7 @@ export default class HomeScreen extends Component {
             width: "100%",
             height: (Dimensions.get("window").height * 4) / 10
           }}
-          source={require("../assets/images/WavyBlue.jpg")}
+          source={require("../assets/images/HeaderImage.png")}
         />
         <View style={styles.buttons}>
           <View>
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#fff",
     margin: "2%",
+    marginTop: "10%",
     // marginTop: (Dimensions.get("window").height * 4) / 10,
     height: (Dimensions.get("window").height * 95) / 100,
     width: Dimensions.get("window").width - 2
@@ -72,13 +73,18 @@ const styles = StyleSheet.create({
     color: "#1A90F5"
   },
   customBtnBG1: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "white",
     borderRadius: 5,
+    borderWidth: 0.5,
+    borderColor: "#CBC9C9",
     width: (Dimensions.get("window").width * 9) / 20,
     marginRight: "2%",
     marginLeft: "2%",
     marginBottom: "2%",
     marginTop: "5%",
-    height: (Dimensions.get("window").height - 1) / 4
+    height: (Dimensions.get("window").width * 9) / 20,
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity: 0.8,
+    shadowColor: "#8C8C8C"
   }
 });
