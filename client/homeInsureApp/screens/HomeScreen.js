@@ -42,7 +42,7 @@ export default class HomeScreen extends Component {
           </View>
 
           <View>
-            <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
+            <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("Claims")}}>
               <Text style={styles.customBtnText}>Button 3</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>

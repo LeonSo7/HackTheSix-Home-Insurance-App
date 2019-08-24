@@ -1,24 +1,58 @@
 import React, { Component } from 'react';
-import {Button, TextInput, View, StyleSheet, Image } from 'react-native';
+import {Button, TextInput, View, StyleSheet, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
+import * as Permissions from 'expo-permissions';
+import { Camera } from 'expo-camera';
 
-export default class App extends Component {
+export default class ClaimsScreen extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-
+        hasCameraPermission: null,
+        type: Camera.Constants.Type.back,
     };
   }
   
-  componentDidUpdate() {
- 
+  async componentWillMount() {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
   }
 
+  renderCamera(){
+    const { hasCameraPermission } = this.state;
+    if (hasCameraPermission === null) {
+      return <View />;
+    } else if (hasCameraPermission === false) {
+      return <Text>No access to camera</Text>;
+    } else {
+      return (
+        <View>
+          <Camera type={this.state.type}>
+            <View
+              style={{
+                backgroundColor: 'transparent',
+              }}>
+            </View>
+          </Camera>
+        </View>
+      );
+    }
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-          <Text>Hi</Text>
+      <View>
+          <Image
+          style={{
+            width: "100%",
+            marginTop: "-3%",
+            height: (Dimensions.get("window").height) / 4
+          }}
+          source={require("../assets/images/ClaimsHeader.png")}
+        />
+        <View>
+            {this.renderCamera()}
+        </View>
       </View>
     );
   }
