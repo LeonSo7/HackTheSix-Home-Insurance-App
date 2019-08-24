@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, StyleSheet } from 'react-native';
+import { Alert, Button, TextInput, View, StyleSheet, Image } from 'react-native';
 
 export default class App extends Component {
   constructor(props) {
@@ -8,18 +8,24 @@ export default class App extends Component {
     this.state = {
       accountNumber: '',
       password: '',
+      enteredPass: '',
     };
   }
   
-  onLogin() {
-    const { accountNumber, password } = this.state;
+  componentDidUpdate() {
+    if (this.state.enteredPass == "TestPass"){
+        this.props.navigation.navigate("Main");
+    }
+  }
 
-    Alert.alert('Credentials', `${accountNumber} + ${password}`);
+  onLogin() {
+    this.setState({enteredPass: this.state.password});
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Image source = {require('../assets/images/longIcon.png')} style = {styles.loginLogo}/>
         <TextInput
           value={this.state.accountNumber}
           onChangeText={(accountNumber) => this.setState({ accountNumber })}
@@ -37,7 +43,7 @@ export default class App extends Component {
         <Button
           title={'Login'}
           style={styles.input}
-          onPress={this.onLogin.bind(this)}
+          onPress={(this.onLogin.bind(this))}
         />
       </View>
     );
@@ -49,14 +55,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: 'white',
   },
   input: {
-    width: 200,
+    width: 250,
     height: 44,
     padding: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderBottomColor: '#C0C0C0',
+    borderColor: 'white',
     marginBottom: 10,
   },
+  loginLogo: {
+      width: 350,
+      height: 100,
+      marginBottom: 30
+  }
 });
