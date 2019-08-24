@@ -1,5 +1,5 @@
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, {Component} from "react";
 import {
   Dimensions,
   Image,
@@ -27,7 +27,7 @@ export default function HomeScreen() {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("AssetScreen")}}>
+        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("Asset")}}>
           <Text style={styles.customBtnText}>Button 3</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
