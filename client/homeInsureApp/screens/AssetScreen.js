@@ -33,7 +33,8 @@ export default class AssetScreen extends Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 22
+   paddingTop: 22,
+   backgroundColor: 'red'
   },
   item: {
     padding: 10,

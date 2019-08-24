@@ -1,5 +1,5 @@
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { Component } from "react";
 import {
   Dimensions,
   Image,
@@ -12,35 +12,35 @@ import {
   View
 } from "react-native";
 
-import { MonoText } from "../components/StyledText";
+export default class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <View>
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
-          <Text style={styles.customBtnText}>Button 1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
-          <Text style={styles.customBtnText}>Button 2</Text>
-        </TouchableOpacity>
-      </View>
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
+            <Text style={styles.customBtnText}>Button 1</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("Asset");}}>
+            <Text style={styles.customBtnText}>Button 2</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View>
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("AssetScreen")}}>
-          <Text style={styles.customBtnText}>Button 3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
-          <Text style={styles.customBtnText}>Button 4</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
+            <Text style={styles.customBtnText}>Button 3</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
+            <Text style={styles.customBtnText}>Button 4</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
-
-HomeScreen.navigationOptions = {
-  header: null
-};
 
 const styles = StyleSheet.create({
   container: {
