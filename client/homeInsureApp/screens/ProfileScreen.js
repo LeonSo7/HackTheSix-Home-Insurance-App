@@ -27,7 +27,7 @@ export default class ProfileScreen extends Component {
             marginTop: "-3%",
             height: Dimensions.get("window").height / 4
           }}
-          source={require("../assets/images/ClaimsHeader.png")}
+          source={require("../assets/images/ProfileHeader.png")}
         />
         <TouchableOpacity
           style={[styles.back, { marginTop: "-40%" }, { marginLeft: "3%" }]}
