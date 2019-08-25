@@ -30,12 +30,12 @@ export default class SystemsScreen extends Component {
       totalNumber: 2,
       testSystems: [
         {
-          name: "Kevin's Big Bed",
+          name: "Security Alarms",
           cost: "12",
           id: 0
         },
         {
-          name: "Kevin's Big Piano",
+          name: "Security Cameras",
           cost: "100",
           id: 1
         }
@@ -107,7 +107,7 @@ export default class SystemsScreen extends Component {
     return (
       <View>
         <Text>System: {this.state.testSystems[id].name}</Text>
-        <Text>Value: {this.state.testSystems[id].cost}</Text>
+        <Text>Discount: {this.state.testSystems[id].cost}</Text>
       </View>
     );
   }
@@ -125,12 +125,19 @@ export default class SystemsScreen extends Component {
           source={require("../assets/images/SystemsHeader.png")}
         />
         <TouchableOpacity
-          style={styles.customBtnBG1}
+          style={[styles.back, { marginTop: "-40%" }, { marginLeft: "3%" }]}
           onPress={() => {
             this.props.navigation.navigate("Main");
           }}
         >
-          <Text style={styles.customBtnText}>Back</Text>
+          <Text
+            style={{
+              color: "white",
+              fontSize: 50
+            }}
+          >
+            ‹
+          </Text>
         </TouchableOpacity>
         {/* Add Asset Button */}
         <TouchableOpacity
@@ -142,7 +149,7 @@ export default class SystemsScreen extends Component {
             <Modal visible={this.state.modalVisible}>
               <View>
                 <Image
-                  source={require("../assets/images/AddAssetsHeader.png")}
+                  source={require("../assets/images/AddSystemHeader.png")}
                   style={{
                     width: "100%",
                     marginTop: "-3%",
@@ -159,7 +166,7 @@ export default class SystemsScreen extends Component {
                       <Text
                         style={{
                           color: "white",
-                          fontSize: "20",
+                          fontSize: 20,
                           fontWeight: "bold",
                           marginTop: "-5%",
                           marginLeft: "3%"
@@ -228,7 +235,7 @@ export default class SystemsScreen extends Component {
                       <Text
                         style={{
                           color: "white",
-                          fontSize: "20",
+                          fontSize: 20,
                           fontWeight: "bold",
                           marginTop: "-5%",
                           marginLeft: "3%"
@@ -258,7 +265,7 @@ export default class SystemsScreen extends Component {
             </Text>
           </View>
         </TouchableOpacity>
-        <View style={{ flex: 1, marginBottom: 10 }}>
+        <View style={{ flex: 1, marginBottom: 10, marginTop: 20 }}>
           <FlatList
             data={this.state.testSystems}
             keyExtractor={(item, index) => index.toString()}
@@ -299,9 +306,10 @@ const styles = StyleSheet.create({
   },
   customBtnText: {
     fontSize: 25,
-    fontWeight: "400",
+    fontWeight: "bold",
     textAlign: "center",
-    color: "#1A90F5"
+    color: "white",
+    marginTop: 16
   },
   addButtonContainer: {
     backgroundColor: "#fff",
@@ -313,17 +321,18 @@ const styles = StyleSheet.create({
     height: 80,
     borderWidth: 0.5,
     borderColor: "#e0e0e0",
-    alignContent: "center"
+    alignContent: "center",
+    marginTop: 145
   },
   customBtnBG1: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#1a90f5",
     borderRadius: 5,
     borderWidth: 0.5,
     borderColor: "#CBC9C9",
     marginRight: "2%",
     marginLeft: "2%",
     marginBottom: "30%",
-    height: "15%",
+    height: "20%",
     shadowOffset: { width: 1, height: 4 },
     shadowOpacity: 0.8,
     shadowColor: "#8C8C8C"

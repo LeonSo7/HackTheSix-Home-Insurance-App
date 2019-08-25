@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
-import axios from "axios";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
@@ -30,34 +29,24 @@ class ClaimsFormScreen extends Component {
     super(props);
     this.state = {
       assets: this.props.claimsFormPage,
-      asset: {}
+      photo64: props.navigation.state.params.photo
     };
-  }
-
-  sendData(dataSrc) {
-    axios({
-      method: "post",
-      url: "/claim",
-      data: dataSrc,
-      headers: { "Content-Type": "application/json" }
-    }).then(res => {});
-  }
-
-  submitClaim() {
-    this.setState({ asset: this.state.asset[0] });
-    this.sendData(this.state.asset);
   }
 
   render() {
     return (
       <View>
         <Image
+          style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height / 2
+          }}
           source={{ uri: `data:image/jpg;base64,${this.state.photo64}` }}
         />
         <View style={styles.selectButton}>
           <RNPickerSelect
             placeholder={{
-              label: "Select an asset..."
+              label: "Select an asset...",
             }}
             onValueChange={value => console.log(value)}
             items={this.state.assets.map(asset => ({
@@ -147,7 +136,7 @@ const pickerSelectStyles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 25,
     marginLeft: 20
-  }
+  },
 });
 
 const mapStateToProps = state => {
