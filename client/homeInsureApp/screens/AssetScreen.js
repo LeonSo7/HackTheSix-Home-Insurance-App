@@ -425,14 +425,6 @@ const mapStateToProps = (state) => {
   return { assetPage: state.Assets }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     dispatch,
-//     onAddAsset: action => dispatch(action)
-//   };
-// };
-
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
 )(AssetScreen);
