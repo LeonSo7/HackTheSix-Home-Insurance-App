@@ -3,7 +3,7 @@ import { Button, TextInput, View, StyleSheet, Text, Image, Dimensions, Touchable
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
-
+import {connect} from 'react-redux';
 var radio_props = [
     { label: 'Garage', value: 0 },
     { label: 'Roof', value: 0 },
@@ -15,14 +15,10 @@ export default class ClaimsFormScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            assets: this.props.claimsFormPage,
             photo64: props.navigation.state.params.photo,
-            name: null,
-            detailedType: null,
-            fullValueBefore: null,
-            language: null
-        };
+        }
     }
-
 
     render() {
         return (
@@ -104,3 +100,12 @@ const styles = StyleSheet.create({
         shadowColor: "#8C8C8C"
       }
 });
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return { claimsFormPage: state.Assets }
+  }
+
+  export default connect(
+    mapStateToProps,
+  )(ClaimsFormScreen);

@@ -16,6 +16,8 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel
 } from "react-native-simple-radio-button";
+import { connect } from "react-redux";
+import { ADD_ASSETS } from "../redux/actions"
 
 var radio_props = [
   { label: "Item", value: 0 },
@@ -29,39 +31,40 @@ var radio_props2 = [
   { label: "Basement", value: 3 }
 ];
 
-export default class AssetScreen extends Component {
+
+class AssetScreen extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      errors: [],
-      id: "",
-      modalVisible: false,
-      objModalVisible: false,
-      name: "",
-      type: "Item",
-      structure: "Room",
-      cost: "",
-      totalNumber: 2,
-      testAssets: [
-        {
-          name: "Kevin's Big Bed",
-          type: "Item",
-          structure: "",
-          cost: "12",
-          id: 0
-        },
-        {
-          name: "Kevin's Big Piano",
-          type: "Item",
-          structure: "",
-          cost: "100",
-          id: 1
-        }
-      ]
-    };
-    this.props = props;
-    // this.init();
+    super(props);
     this.addItem = this.addItem.bind(this);
+  }
+
+  state = {
+    errors: [],
+    id: "",
+    modalVisible: false,
+    objModalVisible: false,
+    name: "",
+    type: "Item",
+    structure: "Room",
+    cost: "",
+    totalNumber: 2,
+    testAssets: this.props.assetPage
+  };
+
+  componentDidUpdate() {
+    { this.addActionDispatch(this.state.testAssets) }
+  }
+
+  addActionDispatch(state) {
+    const action = {
+      type: ADD_ASSETS,
+      payload: state
+    };
+
+    console.log("flag 1")
+    console.log(state);
+
+    this.props.dispatch(action);
   }
 
   setModalVisible(visible) {
@@ -136,12 +139,11 @@ export default class AssetScreen extends Component {
             <Text>Value: {this.state.testAssets[id].cost}</Text>
           </View>
         ) : (
-          <Text>Value: {this.state.testAssets[id].cost}</Text>
-        )}
+            <Text>Value: {this.state.testAssets[id].cost}</Text>
+          )}
       </View>
     );
   }
-
   render() {
     return (
       <View style={styles.contentContainer}>
@@ -196,7 +198,7 @@ export default class AssetScreen extends Component {
                       <Text
                         style={{
                           color: "white",
-                          fontSize: "20",
+                          fontSize: 20,
                           fontWeight: "bold",
                           marginTop: "-5%",
                           marginLeft: "3%"
@@ -236,10 +238,10 @@ export default class AssetScreen extends Component {
                             type === 1
                               ? this.setState({ structure: "Roof" })
                               : type === 2
-                              ? this.setState({ structure: "Garage" })
-                              : type === 3
-                              ? this.setState({ structure: "Basement" })
-                              : this.setState({ structure: "Room" });
+                                ? this.setState({ structure: "Garage" })
+                                : type === 3
+                                  ? this.setState({ structure: "Basement" })
+                                  : this.setState({ structure: "Room" });
                           }}
                         />
                         <Text>Full value before damage: </Text>
@@ -251,20 +253,20 @@ export default class AssetScreen extends Component {
                         />
                       </View>
                     ) : (
-                      <View>
-                        <Text style={{ alignItems: "center" }}>
-                          Full value before damage:{" "}
-                        </Text>
-                        <TextInput
-                          value={this.state.cost}
-                          onChangeText={cost =>
-                            this.setState({ cost: cost, structure: "" })
-                          }
-                          placeholder={"Value"}
-                          style={styles.input}
-                        />
-                      </View>
-                    )}
+                        <View>
+                          <Text style={{ alignItems: "center" }}>
+                            Full value before damage:{" "}
+                          </Text>
+                          <TextInput
+                            value={this.state.cost}
+                            onChangeText={cost =>
+                              this.setState({ cost: cost, structure: "" })
+                            }
+                            placeholder={"Value"}
+                            style={styles.input}
+                          />
+                        </View>
+                      )}
                   </View>
                   <TouchableOpacity
                     style={styles.customBtnBG1}
@@ -301,7 +303,7 @@ export default class AssetScreen extends Component {
                       <Text
                         style={{
                           color: "white",
-                          fontSize: "20",
+                          fontSize: 20,
                           fontWeight: "bold",
                           marginTop: "-5%",
                           marginLeft: "3%"
@@ -417,3 +419,20 @@ const styles = StyleSheet.create({
     height: 60
   }
 });
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return { assetPage: state.Assets }
+}
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     dispatch,
+//     onAddAsset: action => dispatch(action)
+//   };
+// };
+
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps
+)(AssetScreen);
