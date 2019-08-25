@@ -15,37 +15,6 @@ import { Camera } from "expo-camera";
 export default class ClaimsScreen extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      hasCameraPermission: null,
-      type: Camera.Constants.Type.back
-    };
-  }
-
-  async componentWillMount() {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === "granted" });
-  }
-
-  renderCamera() {
-    const { hasCameraPermission } = this.state;
-    if (hasCameraPermission === null) {
-      return <View />;
-    } else if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
-    } else {
-      return (
-        <View>
-          <Camera type={this.state.type}>
-            <View
-              style={{
-                backgroundColor: "#FFFFFF"
-              }}
-            ></View>
-          </Camera>
-        </View>
-      );
-    }
   }
 
   render() {
@@ -65,14 +34,14 @@ export default class ClaimsScreen extends Component {
             </TouchableOpacity> 
         <View>
           <Text style={{ margin: "10%", alignItems: "center", fontSize: 25 }}>
-            Take a photo to submit a claim
+            {`How to Submit a Claim:
+            Step 1: Take a Picture that best shows the extent of the damages
+            Step 2: Report the Details of the damages
+            Step 3: Submit!`}
           </Text>
           <TouchableOpacity
             style={styles.customBtnBG1}
-            onPress={() => {
-              this.renderCamera();
-            }}
-          >
+            onPress={() => {this.props.navigation.navigate("ExampleCamera")}}>
             <Text style={styles.customBtnText}>Continue to camera</Text>
           </TouchableOpacity>
         </View>
@@ -118,8 +87,8 @@ const styles = StyleSheet.create({
     marginRight: "2%",
     marginLeft: "2%",
     marginBottom: "2%",
-    marginTop: "75%",
-    height: "20%",
+    marginTop: "0%",
+    height: (Dimensions.get("window").width * 5) / 10,
     shadowOffset: { width: 1, height: 4 },
     shadowOpacity: 0.8,
     shadowColor: "#8C8C8C"
