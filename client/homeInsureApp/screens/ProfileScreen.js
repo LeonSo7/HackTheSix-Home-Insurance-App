@@ -57,6 +57,17 @@ export default class ProfileScreen extends Component {
             marginLeft: "3%"
           }}
         >
+          Policy No.: 327463905
+        </Text>
+        <Text></Text>
+        <Text
+          style={{
+            marginTop: 5,
+            fontSize: 20,
+            color: "#626060",
+            marginLeft: "3%"
+          }}
+        >
           First Name: Jarod
         </Text>
         <Text
