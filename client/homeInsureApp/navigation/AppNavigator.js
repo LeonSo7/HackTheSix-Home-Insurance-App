@@ -8,6 +8,7 @@ import ClaimScreen from "../screens/ClaimsScreen";
 import ExampleCamera from "../screens/ExampleCamera";
 import ClaimFormScreen from "../screens/ClaimsFormScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import SystemsScreen from "../screens/SystemsScreen";
 
 export default createAppContainer(
   createSwitchNavigator(
@@ -20,7 +21,8 @@ export default createAppContainer(
       Claims: { screen: ClaimScreen },
       ExampleCamera: { screen: ExampleCamera },
       ClaimForm: { screen: ClaimFormScreen },
-      Profile: { screen: ProfileScreen }
+      Profile: { screen: ProfileScreen },
+      Systems: { screen: SystemsScreen }
     },
     {
       initialRouteName: "Login"
