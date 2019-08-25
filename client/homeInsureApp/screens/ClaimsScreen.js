@@ -28,21 +28,127 @@ export default class ClaimsScreen extends Component {
           }}
           source={require("../assets/images/ClaimsHeader.png")}
         />
-        <TouchableOpacity style={styles.back} onPress={() => 
-        {this.props.navigation.navigate("Main")}}>
-              <Text style={styles.customBtnText}>Back</Text>
-            </TouchableOpacity> 
+        <TouchableOpacity
+          style={[styles.back, { marginTop: "-40%" }, { marginLeft: "3%" }]}
+          onPress={() => {
+            this.props.navigation.navigate("Main");
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontSize: 50
+            }}
+          >
+            ‹
+          </Text>
+        </TouchableOpacity>
         <View>
-          <Text style={{ margin: "10%", alignItems: "center", fontSize: 25 }}>
-            {`How to Submit a Claim:
-            Step 1: Take a Picture that best shows the extent of the damages
-            Step 2: Report the Details of the damages
-            Step 3: Submit!`}
+          <Text
+            style={{
+              marginTop: "35%",
+              alignItems: "center",
+              fontSize: 20,
+              color: "#626060",
+              marginLeft: "3%",
+              fontWeight: "bold",
+              textDecorationLine: "underline"
+            }}
+          >
+            How to Submit a Claim:
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "#626060"
+            }}
+          >
+            Step 1:
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              color: "#626060"
+            }}
+          >
+            Take a Picture that best shows the extent of the damages.
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "#626060"
+            }}
+          >
+            Step 2:
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              color: "#626060"
+            }}
+          >
+            Report the Details of the damages.
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "#626060"
+            }}
+          >
+            Step 3:
+          </Text>
+          <Text
+            style={{
+              marginLeft: "3%",
+              marginRight: "3%",
+              alignItems: "center",
+              fontSize: 20,
+              color: "#626060"
+            }}
+          >
+            Submit!
           </Text>
           <TouchableOpacity
-            style={styles.customBtnBG1}
-            onPress={() => {this.props.navigation.navigate("ExampleCamera")}}>
-            <Text style={styles.customBtnText}>Continue to camera</Text>
+            style={[
+              styles.customBtnBG1,
+              {
+                marginLeft: "5%",
+                marginRight: "5%",
+                marginTop: "20%",
+                height: 120,
+                backgroundColor: "#A5A2A2"
+              }
+            ]}
+            onPress={() => {
+              this.props.navigation.navigate("ExampleCamera");
+            }}
+          >
+            <Text
+              style={[
+                styles.customBtnText,
+                { marginTop: 40, fontWeight: "bold", color: "white" }
+              ]}
+            >
+              Continue to Camera
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
