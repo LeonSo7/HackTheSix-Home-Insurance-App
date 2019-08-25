@@ -97,7 +97,7 @@ export default class HomeScreen extends Component {
             <TouchableOpacity
               style={styles.customBtnBG1}
               onPress={() => {
-                this.props.navigation.navigate("ExampleCamera");
+                this.props.navigation.navigate("Systems");
               }}
             >
               <View style={{ paddingTop: 25 }}>
