@@ -49,7 +49,7 @@ export default class ExampleCamera extends Component {
       return (
         <View style={{ flex: 1}}>
           <TouchableOpacity style={styles.back} onPress={() => 
-        {this.props.navigation.navigate("Main")}}>
+             {this.props.navigation.navigate("Main")}}>
               <Text style={styles.customBtnText}>Back</Text>
             </TouchableOpacity> 
           <Camera
