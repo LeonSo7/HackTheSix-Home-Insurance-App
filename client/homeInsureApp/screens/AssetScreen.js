@@ -17,7 +17,7 @@ import RadioForm, {
   RadioButtonLabel
 } from "react-native-simple-radio-button";
 import { connect } from "react-redux";
-import { ADD_ASSETS } from "../redux/actions"
+import { ADD_ASSETS } from "../redux/actions";
 
 var radio_props = [
   { label: "Item", value: 0 },
@@ -30,7 +30,6 @@ var radio_props2 = [
   { label: "Roof", value: 2 },
   { label: "Basement", value: 3 }
 ];
-
 
 class AssetScreen extends Component {
   constructor(props) {
@@ -52,7 +51,9 @@ class AssetScreen extends Component {
   };
 
   componentDidUpdate() {
-    { this.addActionDispatch(this.state.testAssets) }
+    {
+      this.addActionDispatch(this.state.testAssets);
+    }
   }
 
   addActionDispatch(state) {
@@ -61,7 +62,7 @@ class AssetScreen extends Component {
       payload: state
     };
 
-    console.log("flag 1")
+    console.log("flag 1");
     console.log(state);
 
     this.props.dispatch(action);
@@ -139,8 +140,8 @@ class AssetScreen extends Component {
             <Text>Value: {this.state.testAssets[id].cost}</Text>
           </View>
         ) : (
-            <Text>Value: {this.state.testAssets[id].cost}</Text>
-          )}
+          <Text>Value: {this.state.testAssets[id].cost}</Text>
+        )}
       </View>
     );
   }
@@ -238,10 +239,10 @@ class AssetScreen extends Component {
                             type === 1
                               ? this.setState({ structure: "Roof" })
                               : type === 2
-                                ? this.setState({ structure: "Garage" })
-                                : type === 3
-                                  ? this.setState({ structure: "Basement" })
-                                  : this.setState({ structure: "Room" });
+                              ? this.setState({ structure: "Garage" })
+                              : type === 3
+                              ? this.setState({ structure: "Basement" })
+                              : this.setState({ structure: "Room" });
                           }}
                         />
                         <Text>Full value before damage: </Text>
@@ -253,20 +254,20 @@ class AssetScreen extends Component {
                         />
                       </View>
                     ) : (
-                        <View>
-                          <Text style={{ alignItems: "center" }}>
-                            Full value before damage:{" "}
-                          </Text>
-                          <TextInput
-                            value={this.state.cost}
-                            onChangeText={cost =>
-                              this.setState({ cost: cost, structure: "" })
-                            }
-                            placeholder={"Value"}
-                            style={styles.input}
-                          />
-                        </View>
-                      )}
+                      <View>
+                        <Text style={{ alignItems: "center" }}>
+                          Full value before damage:{" "}
+                        </Text>
+                        <TextInput
+                          value={this.state.cost}
+                          onChangeText={cost =>
+                            this.setState({ cost: cost, structure: "" })
+                          }
+                          placeholder={"Value"}
+                          style={styles.input}
+                        />
+                      </View>
+                    )}
                   </View>
                   <TouchableOpacity
                     style={styles.customBtnBG1}
@@ -420,10 +421,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return { assetPage: state.Assets }
-}
+const mapStateToProps = state => {
+  console.log(state);
+  return { assetPage: state.Assets };
+};
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -433,6 +434,6 @@ const mapStateToProps = (state) => {
 // };
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
   // mapDispatchToProps
 )(AssetScreen);
