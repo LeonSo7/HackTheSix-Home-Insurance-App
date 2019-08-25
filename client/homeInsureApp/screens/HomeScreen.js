@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+import { Icon } from "react-native-elements";
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -28,8 +29,23 @@ export default class HomeScreen extends Component {
         />
         <View style={styles.buttons}>
           <View>
-            <TouchableOpacity style={styles.customBtnBG1} onPress={() => {}}>
-              <Text style={styles.customBtnText}>Button 1</Text>
+            <TouchableOpacity
+              style={styles.customBtnBG1}
+              onPress={() => {
+                this.props.navigation.navigate("Profile");
+              }}
+            >
+              <View style={{ paddingTop: 25 }}>
+                <Icon name="person" type="octicon" color="grey" size={70} />
+                <Text
+                  style={[
+                    styles.customBtnText,
+                    { fontWeight: "bold", fontSize: 21 }
+                  ]}
+                >
+                  Profile
+                </Text>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.customBtnBG1}
@@ -37,7 +53,17 @@ export default class HomeScreen extends Component {
                 this.props.navigation.navigate("Asset");
               }}
             >
-              <Text style={styles.customBtnText}>Button 2</Text>
+              <View style={{ paddingTop: 25 }}>
+                <Icon name="ruby" type="octicon" color="grey" size={70} />
+                <Text
+                  style={[
+                    styles.customBtnText,
+                    { fontWeight: "bold", fontSize: 21 }
+                  ]}
+                >
+                  Assets
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
 
@@ -48,10 +74,35 @@ export default class HomeScreen extends Component {
                 this.props.navigation.navigate("Claims");
               }}
             >
-              <Text style={styles.customBtnText}>Button 3</Text>
+              <View style={{ paddingTop: 25 }}>
+                <Icon name="alert" type="octicon" color="grey" size={70} />
+                <Text
+                  style={[
+                    styles.customBtnText,
+                    { fontWeight: "bold", fontSize: 21 }
+                  ]}
+                >
+                  Make a Claim
+                </Text>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.customBtnBG1} onPress={() => {this.props.navigation.navigate("ExampleCamera")}}>
-              <Text style={styles.customBtnText}>Button 4</Text>
+            <TouchableOpacity
+              style={styles.customBtnBG1}
+              onPress={() => {
+                this.props.navigation.navigate("ExampleCamera");
+              }}
+            >
+              <View style={{ paddingTop: 25 }}>
+                <Icon name="shield" type="octicon" color="grey" size={70} />
+                <Text
+                  style={[
+                    styles.customBtnText,
+                    { fontWeight: "bold", fontSize: 21 }
+                  ]}
+                >
+                  Systems
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
