@@ -5,16 +5,18 @@ import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/LoginScreen";
 import AssetScreen from "../screens/AssetScreen";
 import ClaimScreen from "../screens/ClaimsScreen";
+import SystemsScreen from "../screens/SystemsScreen";
 
 export default createAppContainer(
   createSwitchNavigator(
     {
       // You could add another route here for authentication.
       // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-      Login: {screen: LoginScreen},
-      Main:  {screen: HomeScreen},
-      Asset: {screen: AssetScreen},
-      Claims : {screen: ClaimScreen}
+      Login: { screen: LoginScreen },
+      Main: { screen: HomeScreen },
+      Asset: { screen: AssetScreen },
+      Claims: { screen: ClaimScreen },
+      Systems: { screen: SystemsScreen }
     },
     {
       initialRouteName: "Login"
