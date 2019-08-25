@@ -30,7 +30,7 @@ export default class ClaimsScreen extends Component {
           <Camera type={this.state.type}>
             <View
               style={{
-                backgroundColor: 'transparent',
+                backgroundColor: '#FFFFFF',
               }}>
             </View>
           </Camera>
@@ -53,6 +53,8 @@ export default class ClaimsScreen extends Component {
         <View>
             {this.renderCamera()}
         </View>
+        <Text>hello world {this.state.hasCameraPermission ? 
+        "YES" : "NO"} {this.state.type}</Text>
       </View>
     );
   }
