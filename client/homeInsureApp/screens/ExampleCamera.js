@@ -55,7 +55,8 @@ export default class ExampleCamera extends Component {
           <Camera
             style={{
               width: Dimensions.get("window").width,
-              height: Dimensions.get("window").height/2
+              height: (Dimensions.get("window").height - 10)/2,
+              marginTop: "-87%"
             }}
             type={this.state.type}
             ref={ref => {
@@ -94,7 +95,7 @@ export default class ExampleCamera extends Component {
             </View>
           </Camera>
           {/* </View> */}
-          <View style={{ marginTop: "-38%" }}>
+          <View style={{ marginTop: "-28%" }}>
             <Icon name="camera" type='evilicon' color="black" size={100} />
           </View>
           <TouchableOpacity onPress={this.snap.bind(this)}>
@@ -104,7 +105,8 @@ export default class ExampleCamera extends Component {
         <Image
         style={{
             width: Dimensions.get("window").width,
-            height: Dimensions.get("window").height/2
+            height: Dimensions.get("window").height/2 - 25,
+            marginTop: "5%"
           }}
           source={{uri: `data:image/jpg;base64,${this.state.photo64}`}}
         />
@@ -147,19 +149,21 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "400",
     textAlign: "center",
-    color: "#1A90F5"
+    marginTop: "8%",
+    color: "#1A90F5",
+    fontWeight: "bold"
   },
   customBtnBG1: {
     backgroundColor: "white",
     borderRadius: 5,
     borderWidth: 0.5,
     borderColor: "#CBC9C9",
-    width: (Dimensions.get("window").width * 9) / 20,
+    width: (Dimensions.get("window").width) - 200,
     marginRight: "0%",
-    marginLeft: "2%",
+    marginLeft: "25%",
     marginBottom: "%",
-    marginTop: "-50%",
-    height: (Dimensions.get("window").width * 9) / 20,
+    marginTop: "-30%",
+    height: 70,
     shadowOffset: { width: 1, height: 4 },
     shadowOpacity: 0.8,
     shadowColor: "#8C8C8C"
