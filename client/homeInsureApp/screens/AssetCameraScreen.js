@@ -11,7 +11,7 @@ import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { Icon } from "react-native-elements";
 
-export default class AssetCamera extends Component {
+class AssetCamera extends Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -184,3 +184,4 @@ const styles = StyleSheet.create({
     shadowColor: "#8C8C8C"
   }
 });
+
