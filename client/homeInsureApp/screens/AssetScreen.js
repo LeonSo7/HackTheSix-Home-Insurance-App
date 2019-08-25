@@ -35,7 +35,6 @@ class AssetScreen extends Component {
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
-    
   }
   state = {
     errors: this.props.navigation.state.params.state.errors,
@@ -59,8 +58,6 @@ class AssetScreen extends Component {
     picture64: this.props.navigation.state.params.photo64,
     testAssets: this.props.assetPage
   };
-
-
 
   componentDidUpdate() {
     {
@@ -151,18 +148,51 @@ class AssetScreen extends Component {
             <Text>Value: {this.state.testAssets[id].cost}</Text>
           </View>
         ) : (
-            <Text>Value: {this.state.testAssets[id].cost}</Text>
-            
-          )}
-            <Image
-                    style={{
-                        width: Dimensions.get("window").width,
-                        height: Dimensions.get("window").height / 2
-                    }}
-                    source={{ uri: `data:image/jpg;base64,${this.state.testAssets[id].picture64}` }}
-                />
+          <Text>Value: {this.state.testAssets[id].cost}</Text>
+        )}
+        <Image
+          style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height / 2
+          }}
+          source={{
+            uri: `data:image/jpg;base64,${this.state.testAssets[id].picture64}`
+          }}
+        />
       </View>
     );
+  }
+
+  addPhotoButton() {
+    if (this.state.picture64 == null) {
+      return (
+        <View>
+          <TouchableOpacity
+            style={styles.customBtnBG1}
+            onPress={() => {
+              this.props.navigation.navigate("AssetCamera", {
+                state: this.state
+              });
+            }}
+          >
+            <Text style={styles.customBtnText}>Take Photo of Asset</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <TouchableOpacity
+            style={styles.customBtnBG1}
+            onPress={() => {
+              this.addItem();
+            }}
+          >
+            <Text style={styles.customBtnText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
   render() {
     return (
@@ -288,20 +318,7 @@ class AssetScreen extends Component {
                       </View>
                     )}
                   </View>
-                  <TouchableOpacity
-                    style={styles.customBtnBG1}
-                    onPress={() => { this.props.navigation.navigate("AssetCamera", { state: this.state }) }}>
-
-                    <Text style={styles.customBtnText}>Take Photo of Asset</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.customBtnBG1}
-                    onPress={() => {
-                      this.addItem();
-                    }}
-                  >
-                    <Text style={styles.customBtnText}>Submit</Text>
-                  </TouchableOpacity>
+                  {this.addPhotoButton()}
                 </View>
               </View>
             </Modal>
@@ -359,7 +376,7 @@ class AssetScreen extends Component {
             </Text>
           </View>
         </TouchableOpacity>
-        <View style={{ flex: 1, marginBottom: 10 }}>
+        <View style={{ flex: 1, marginBottom: 10, marginTop: 20 }}>
           <FlatList
             data={this.state.testAssets}
             keyExtractor={(item, index) => index.toString()}
@@ -400,9 +417,10 @@ const styles = StyleSheet.create({
   },
   customBtnText: {
     fontSize: 25,
-    fontWeight: "400",
+    fontWeight: "bold",
     textAlign: "center",
-    color: "#1A90F5"
+    color: "white",
+    marginTop: 16
   },
   addButtonContainer: {
     backgroundColor: "#fff",
@@ -414,17 +432,18 @@ const styles = StyleSheet.create({
     height: 80,
     borderWidth: 0.5,
     borderColor: "#e0e0e0",
-    alignContent: "center"
+    alignContent: "center",
+    marginTop: 145
   },
   customBtnBG1: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#1a90f5",
     borderRadius: 5,
     borderWidth: 0.5,
     borderColor: "#CBC9C9",
     marginRight: "2%",
     marginLeft: "2%",
     marginBottom: "30%",
-    height: "15%",
+    height: "27%",
     shadowOffset: { width: 1, height: 4 },
     shadowOpacity: 0.8,
     shadowColor: "#8C8C8C"
@@ -446,8 +465,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
-  return { assetPage: state.Assets }
-}
+const mapStateToProps = state => {
+  return { assetPage: state.Assets };
+};
 
 export default connect(mapStateToProps)(AssetScreen);

@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
-import axios from "axios";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
@@ -55,6 +54,10 @@ class ClaimsFormScreen extends Component {
     return (
       <View>
         <Image
+          style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height / 2
+          }}
           source={{ uri: `data:image/jpg;base64,${this.state.photo64}` }}
         />
         <View style={styles.selectButton}>
