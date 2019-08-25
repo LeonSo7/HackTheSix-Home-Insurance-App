@@ -50,7 +50,15 @@ export default class HomeScreen extends Component {
             <TouchableOpacity
               style={styles.customBtnBG1}
               onPress={() => {
-                this.props.navigation.navigate("Asset");
+                this.props.navigation.navigate("Asset", {state:{errors: [],
+    id: "",
+    modalVisible: false,
+    objModalVisible: false,
+    name: "",
+    type: "Item",
+    structure: "Room",
+    cost: "",
+    totalNumber: 2},photo64: null});
               }}
             >
               <View style={{ paddingTop: 25 }}>

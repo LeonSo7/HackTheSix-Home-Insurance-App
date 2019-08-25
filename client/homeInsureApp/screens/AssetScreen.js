@@ -36,20 +36,32 @@ class AssetScreen extends Component {
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
+    
   }
-
   state = {
-    errors: [],
-    id: "",
-    modalVisible: false,
-    objModalVisible: false,
-    name: "",
-    type: "Item",
-    structure: "Room",
-    cost: "",
-    totalNumber: 2,
+    errors: this.props.navigation.state.params.state.errors,
+    id: this.props.navigation.state.params.state.id,
+    modalVisible: this.props.navigation.state.params.state.modalVisible,
+    objModalVisible: this.props.navigation.state.params.state.objModalVisible,
+    name: this.props.navigation.state.params.state.name,
+    type: this.props.navigation.state.params.state.type,
+    structure: this.props.navigation.state.params.state.structure,
+    cost: this.props.navigation.state.params.state.cost,
+    totalNumber: this.props.navigation.state.params.state.totalNumber,
+    // errors: [],
+    // id: "",
+    // modalVisible: false,
+    // objModalVisible: false,
+    // name: "",
+    // type: "Item",
+    // structure: "Room",
+    // cost: "",
+    // totalNumber: 2,
+    picture64: this.props.navigation.state.params.photo64,
     testAssets: this.props.assetPage
   };
+
+
 
   componentDidUpdate() {
     { this.addActionDispatch(this.state.testAssets) }
@@ -60,9 +72,6 @@ class AssetScreen extends Component {
       type: ADD_ASSETS,
       payload: state
     };
-
-    console.log("flag 1")
-    console.log(state);
 
     this.props.dispatch(action);
   }
@@ -111,8 +120,10 @@ class AssetScreen extends Component {
       type: this.state.type,
       structure: this.state.structure,
       cost: this.state.cost,
-      id: this.state.totalNumber
+      id: this.state.totalNumber,
+      picture64: this.state.picture64
     };
+
     const newArray = this.state.testAssets.slice(); // Create a copy
     newArray.push(obj); // Push the object
     this.setState({
@@ -140,7 +151,15 @@ class AssetScreen extends Component {
           </View>
         ) : (
             <Text>Value: {this.state.testAssets[id].cost}</Text>
+            
           )}
+            <Image
+                    style={{
+                        width: Dimensions.get("window").width,
+                        height: Dimensions.get("window").height / 2
+                    }}
+                    source={{ uri: `data:image/jpg;base64,${this.state.testAssets[id].picture64}` }}
+                />
       </View>
     );
   }
@@ -268,6 +287,12 @@ class AssetScreen extends Component {
                         </View>
                       )}
                   </View>
+                  <TouchableOpacity
+                    style={styles.customBtnBG1}
+                    onPress={() => { this.props.navigation.navigate("AssetCamera", { state: this.state }) }}>
+
+                    <Text style={styles.customBtnText}>Take Photo of Asset</Text>
+                  </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.customBtnBG1}
                     onPress={() => {
@@ -421,7 +446,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return { assetPage: state.Assets }
 }
 

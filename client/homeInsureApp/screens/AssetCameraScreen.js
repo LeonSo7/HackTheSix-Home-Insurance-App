@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
   Text,
   View,
@@ -11,14 +11,18 @@ import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { Icon } from "react-native-elements";
 
-class AssetCamera extends Component {
-  state = {
-    hasCameraPermission: null,
-    type: Camera.Constants.Type.back,
-    photo64: "bad",
-    photoUri: null,
-    status: "picture not taken"
-  };
+export default class AssetCamera extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasCameraPermission: null,
+      type: Camera.Constants.Type.back,
+      photo64: "bad",
+      photoUri: null,
+      status: "picture not taken",
+      givenState: props.navigation.state.params.state
+    };
+  }
 
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -47,15 +51,14 @@ class AssetCamera extends Component {
       return <Text>No access to camera</Text>;
     } else {
       return (
-        <View style={{ flex: 1}}>
-          <TouchableOpacity style={styles.back} onPress={() => 
-        {this.props.navigation.navigate("Main")}}>
-              <Text style={styles.customBtnText}>Back</Text>
-            </TouchableOpacity> 
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity style={styles.back} onPress={() => { this.props.navigation.navigate("Main") }}>
+            <Text style={styles.customBtnText}>Back</Text>
+          </TouchableOpacity>
           <Camera
             style={{
               width: Dimensions.get("window").width,
-              height: (Dimensions.get("window").height - 10)/2,
+              height: (Dimensions.get("window").height - 10) / 2,
               marginTop: "-87%"
             }}
             type={this.state.type}
@@ -102,19 +105,18 @@ class AssetCamera extends Component {
             <View style={styles.snapButton} opacity={0.2}></View>
           </TouchableOpacity>
           <View>
-        <Image
-        style={{
-            width: Dimensions.get("window").width,
-            height: Dimensions.get("window").height/2 - 25,
-            marginTop: "5%"
-          }}
-          source={{uri: `data:image/jpg;base64,${this.state.photo64}`}}
-        />
-        <TouchableOpacity style={styles.customBtnBG1} onPress={() => 
-        {if (this.state.photo64 != "bad"){this.props.navigation.navigate("ClaimForm", {photo: this.state.photo64})}}}>
-              <Text style={styles.customBtnText}>Create Claim</Text>
+            <Image
+              style={{
+                width: Dimensions.get("window").width,
+                height: Dimensions.get("window").height / 2 - 25,
+                marginTop: "5%"
+              }}
+              source={{ uri: `data:image/jpg;base64,${this.state.photo64}` }}
+            />
+            <TouchableOpacity style={styles.customBtnBG1} onPress={() => { if (this.state.photo64 != "bad") { this.props.navigation.navigate("Asset", {state: this.state.givenState, photo64: this.state.photo64 }) } }}>
+              <Text style={styles.customBtnText}>Add Photo</Text>
             </TouchableOpacity>
-        </View>
+          </View>
         </View>
       );
     }
