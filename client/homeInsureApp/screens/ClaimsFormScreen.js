@@ -11,7 +11,7 @@ var radio_props = [
 
 ];
 
-export default class ClaimsFormScreen extends Component {
+class ClaimsFormScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
