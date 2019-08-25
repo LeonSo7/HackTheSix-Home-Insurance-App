@@ -18,7 +18,21 @@ export default class ProfileScreen extends Component {
   }
 
   render() {
-    return <View></View>;
+    return (
+      <View>
+        <Image
+          style={{
+            width: "100%",
+            marginTop: "-3%",
+            height: Dimensions.get("window").height / 4
+          }}
+          source={require("../assets/images/ClaimsHeader.png")}
+        />
+        <View>
+          <Text>Hello Jarod,</Text>
+        </View>
+      </View>
+    );
   }
 }
 
