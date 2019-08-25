@@ -23,31 +23,38 @@ var radio_props = [
   { label: "Room", value: 0 }
 ];
 import RNPickerSelect from "react-native-picker-select";
+import axios from 'axios';
 
 class ClaimsFormScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      assets: this.props.claimsFormPage,
-      asset: {},
-      index: null
-    };
   }
 
-  sendData(dataSrc) {
+  state = {
+    assets: this.props.claimsFormPage,
+    asset: {},
+    index: null,
+    photo64: this.props.navigation.state.params.photo
+  };
+
+  sendData() {
+    //   console.log( this.state.assets[this.state.index]);
+    //   console.log(this.state.photo64);
+    //   console.log(this.state.assets[this.state.index].valueBefore);
     axios({
       method: "post",
       url: "https://hackthesix-backend-api-heroku.herokuapp.com/claim",
-      data: dataSrc,
+      data: {
+          name: this.state.assets[this.state.index].name,
+          cost: this.state.assets[this.state.index].valueBefore,
+          category: this.state.assets[this.state.index].structureType ? this.state.assets[this.state.index].structureType : this.state.assets[this.state.index].type,
+          before: this.state.assets[this.state.index].picture64,
+          after: this.state.photo64
+      },
       headers: { "Content-Type": "application/json" }
     }).then(res => {
-      console.log("hello world", res);
+      console.log("hello world");
     });
-  }
-
-  submitClaim() {
-    this.setState({ asset: this.state.assets[0] });
-    this.sendData(this.state.asset);
   }
 
   render() {
@@ -83,10 +90,11 @@ class ClaimsFormScreen extends Component {
               }
             }}
           />
+
         </View>
         <TouchableOpacity
           onPress={() => {
-            this.submitClaim();
+            this.sendData();
           }}
         >
           <View style={styles.customBtnBG1}>
