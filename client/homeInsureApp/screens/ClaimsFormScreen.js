@@ -29,8 +29,25 @@ class ClaimsFormScreen extends Component {
     super(props);
     this.state = {
       assets: this.props.claimsFormPage,
-      photo64: props.navigation.state.params.photo
+      asset: {},
+      index: null
     };
+  }
+
+  sendData(dataSrc) {
+    axios({
+      method: "post",
+      url: "https://hackthesix-backend-api-heroku.herokuapp.com/claim",
+      data: dataSrc,
+      headers: { "Content-Type": "application/json" }
+    }).then(res => {
+      console.log("hello world", res);
+    });
+  }
+
+  submitClaim() {
+    this.setState({ asset: this.state.assets[0] });
+    this.sendData(this.state.asset);
   }
 
   render() {
@@ -46,9 +63,11 @@ class ClaimsFormScreen extends Component {
         <View style={styles.selectButton}>
           <RNPickerSelect
             placeholder={{
-              label: "Select an asset...",
+              label: "Select an asset..."
             }}
-            onValueChange={value => console.log(value)}
+            onValueChange={value => {
+              this.setState({ index: value });
+            }}
             items={this.state.assets.map(asset => ({
               label: asset.name,
               value: asset.id
@@ -65,7 +84,11 @@ class ClaimsFormScreen extends Component {
             }}
           />
         </View>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            this.submitClaim();
+          }}
+        >
           <View style={styles.customBtnBG1}>
             <Text style={styles.customBtnText}>Submit Claim</Text>
           </View>
@@ -136,7 +159,7 @@ const pickerSelectStyles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 25,
     marginLeft: 20
-  },
+  }
 });
 
 const mapStateToProps = state => {
