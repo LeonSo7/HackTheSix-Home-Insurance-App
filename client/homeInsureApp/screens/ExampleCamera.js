@@ -48,6 +48,10 @@ export default class ExampleCamera extends Component {
     } else {
       return (
         <View style={{ flex: 1}}>
+          <TouchableOpacity style={styles.back} onPress={() => 
+        {this.props.navigation.navigate("Main")}}>
+              <Text style={styles.customBtnText}>Back</Text>
+            </TouchableOpacity> 
           <Camera
             style={{
               width: Dimensions.get("window").width,
@@ -155,6 +159,21 @@ const styles = StyleSheet.create({
     marginLeft: "2%",
     marginBottom: "%",
     marginTop: "-50%",
+    height: (Dimensions.get("window").width * 9) / 20,
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity: 0.8,
+    shadowColor: "#8C8C8C"
+  },
+  back: {
+    backgroundColor: "white",
+    borderRadius: 5,
+    borderWidth: 0.5,
+    borderColor: "#CBC9C9",
+    width: (Dimensions.get("window").width * 9) / 20,
+    marginRight: "0%",
+    marginLeft: "2%",
+    marginBottom: "%",
+    marginTop: "50%",
     height: (Dimensions.get("window").width * 9) / 20,
     shadowOffset: { width: 1, height: 4 },
     shadowOpacity: 0.8,

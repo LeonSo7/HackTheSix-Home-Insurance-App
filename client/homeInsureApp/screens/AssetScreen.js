@@ -138,6 +138,10 @@ export default class AssetScreen extends Component {
           }}
           source={require("../assets/images/AssetsHeader.png")}
         />
+         <TouchableOpacity style={styles.customBtnBG1} onPress={() => 
+        {this.props.navigation.navigate("Main")}}>
+              <Text style={styles.customBtnText}>Back</Text>
+            </TouchableOpacity> 
         {/* Add Asset Button */}
         <TouchableOpacity
           onPress={() => {
