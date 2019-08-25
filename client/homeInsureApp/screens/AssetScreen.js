@@ -9,22 +9,25 @@ import {
   TouchableOpacity,
   Modal,
   TextInput,
-  Button,
+  Button
 } from "react-native";
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel
+} from "react-native-simple-radio-button";
 
 var radio_props = [
-  {label: 'Item', value: 0 },
-  {label: 'Structure', value: 1 }
+  { label: "Item", value: 0 },
+  { label: "Structure", value: 1 }
 ];
 
 var radio_props2 = [
-  {label: 'Room', value: 0 },
-  {label: 'Garage', value: 1 },
-  {label: 'Roof', value: 2 },
-  {label: 'Basement', value: 3 }
+  { label: "Room", value: 0 },
+  { label: "Garage", value: 1 },
+  { label: "Roof", value: 2 },
+  { label: "Basement", value: 3 }
 ];
-
 
 export default class AssetScreen extends Component {
   constructor(props) {
@@ -52,13 +55,13 @@ export default class AssetScreen extends Component {
           type: "Item",
           structure: "",
           cost: "100",
-          id: 1,
+          id: 1
         }
       ]
     };
     this.props = props;
     // this.init();
-    this.addItem = this.addItem.bind(this)
+    this.addItem = this.addItem.bind(this);
   }
 
   setModalVisible(visible) {
@@ -68,7 +71,11 @@ export default class AssetScreen extends Component {
   _renderTouchable = ({ item }) => {
     return (
       <View style={styles.contentContainer}>
-        <TouchableOpacity onPress={() => { this.setState({objModalVisible: true, id: item.id})}}>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ objModalVisible: true, id: item.id });
+          }}
+        >
           {this.renderAssets(item)}
         </TouchableOpacity>
       </View>
@@ -96,32 +103,41 @@ export default class AssetScreen extends Component {
   }
 
   addItem() {
-    const obj = {'name': this.state.name, 'type': this.state.type, 'structure': this.state.structure, 'cost': this.state.cost, 'id': this.state.totalNumber};
+    const obj = {
+      name: this.state.name,
+      type: this.state.type,
+      structure: this.state.structure,
+      cost: this.state.cost,
+      id: this.state.totalNumber
+    };
     const newArray = this.state.testAssets.slice(); // Create a copy
     newArray.push(obj); // Push the object
-    this.setState({ testAssets: newArray, modalVisible: false, name: "", type: "Item", structure: "Room", cost: "", totalNumber: this.state.totalNumber + 1, id: "" });
+    this.setState({
+      testAssets: newArray,
+      modalVisible: false,
+      name: "",
+      type: "Item",
+      structure: "Room",
+      cost: "",
+      totalNumber: this.state.totalNumber + 1,
+      id: ""
+    });
   }
 
   objModal() {
-    let id = this.state.id
+    let id = this.state.id;
     return (
       <View>
-        <Text>
-        Asset: {this.state.testAssets[id].name}
-        </Text>
-        <Text>
-        Type: {this.state.testAssets[id].type}
-        </Text>
-        {this.state.testAssets[id].structure 
-          ? <View><Text>Structure: {this.state.testAssets[id].structure}</Text>
-              <Text>
-                Value: {this.state.testAssets[id].cost}
-              </Text>
-            </View> 
-          : 
-          <Text>
-            Value: {this.state.testAssets[id].cost}
-          </Text>}
+        <Text>Asset: {this.state.testAssets[id].name}</Text>
+        <Text>Type: {this.state.testAssets[id].type}</Text>
+        {this.state.testAssets[id].structure ? (
+          <View>
+            <Text>Structure: {this.state.testAssets[id].structure}</Text>
+            <Text>Value: {this.state.testAssets[id].cost}</Text>
+          </View>
+        ) : (
+          <Text>Value: {this.state.testAssets[id].cost}</Text>
+        )}
       </View>
     );
   }
@@ -138,10 +154,21 @@ export default class AssetScreen extends Component {
           }}
           source={require("../assets/images/AssetsHeader.png")}
         />
-         <TouchableOpacity style={styles.customBtnBG1} onPress={() => 
-        {this.props.navigation.navigate("Main")}}>
-              <Text style={styles.customBtnText}>Back</Text>
-            </TouchableOpacity> 
+        <TouchableOpacity
+          style={[styles.back, { marginTop: "-40%" }, { marginLeft: "3%" }]}
+          onPress={() => {
+            this.props.navigation.navigate("Main");
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontSize: 50
+            }}
+          >
+            ‹
+          </Text>
+        </TouchableOpacity>
         {/* Add Asset Button */}
         <TouchableOpacity
           onPress={() => {
@@ -159,17 +186,28 @@ export default class AssetScreen extends Component {
                     height: Dimensions.get("window").height / 3
                   }}
                 />
-                <View style={{ marginTop: 22}}>
+                <View style={{ marginTop: 22 }}>
                   <View style={{ marginTop: "-60%", height: 60 }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                    }}
-                  >
-                      <Text style={{color: 'white', fontSize: '20', fontWeight: 'bold', marginTop: '-5%', marginLeft: '3%'}}> {"[Cancel]"} </Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: "white",
+                          fontSize: "20",
+                          fontWeight: "bold",
+                          marginTop: "-5%",
+                          marginLeft: "3%"
+                        }}
+                      >
+                        {" "}
+                        {"[Cancel]"}{" "}
+                      </Text>
+                    </TouchableOpacity>
                   </View>
-                  <View style={{marginTop: '40%', marginLeft: '10%'}}>
+                  <View style={{ marginTop: "40%", marginLeft: "10%" }}>
                     <Text style={{ alignItems: "center" }}>Asset: </Text>
                     <TextInput
                       value={this.state.name}
@@ -181,16 +219,28 @@ export default class AssetScreen extends Component {
                       <RadioForm
                         radio_props={radio_props}
                         initial={0}
-                        onPress={(type) => {type === 1 ? this.setState({type:"Structure"}) : this.setState({type:"Item"})}}
+                        onPress={type => {
+                          type === 1
+                            ? this.setState({ type: "Structure" })
+                            : this.setState({ type: "Item" });
+                        }}
                       />
                     </View>
-                    {this.state.type === "Structure" ? 
+                    {this.state.type === "Structure" ? (
                       <View>
                         <Text>Structure Type: </Text>
                         <RadioForm
                           radio_props={radio_props2}
                           initial={0}
-                          onPress={(type) => {type === 1 ? this.setState({structure:"Roof"}) : type === 2 ? this.setState({structure:"Garage"}) : type === 3 ? this.setState({structure: "Basement"}) : this.setState({structure: "Room"})}}
+                          onPress={type => {
+                            type === 1
+                              ? this.setState({ structure: "Roof" })
+                              : type === 2
+                              ? this.setState({ structure: "Garage" })
+                              : type === 3
+                              ? this.setState({ structure: "Basement" })
+                              : this.setState({ structure: "Room" });
+                          }}
                         />
                         <Text>Full value before damage: </Text>
                         <TextInput
@@ -199,27 +249,28 @@ export default class AssetScreen extends Component {
                           placeholder={"Value"}
                           style={styles.input}
                         />
-                        </View>
-                      : 
+                      </View>
+                    ) : (
                       <View>
-                        <Text style={{ alignItems: "center" }}>Full value before damage: </Text>
+                        <Text style={{ alignItems: "center" }}>
+                          Full value before damage:{" "}
+                        </Text>
                         <TextInput
                           value={this.state.cost}
-                          onChangeText={cost => this.setState({ cost: cost, structure: "" })}
+                          onChangeText={cost =>
+                            this.setState({ cost: cost, structure: "" })
+                          }
                           placeholder={"Value"}
                           style={styles.input}
                         />
                       </View>
-                    }
-                    
+                    )}
                   </View>
                   <TouchableOpacity
                     style={styles.customBtnBG1}
-                    onPress={() =>
-                      {
-                        this.addItem()
-                      }
-                    }
+                    onPress={() => {
+                      this.addItem();
+                    }}
                   >
                     <Text style={styles.customBtnText}>Submit</Text>
                   </TouchableOpacity>
@@ -228,7 +279,7 @@ export default class AssetScreen extends Component {
             </Modal>
           ) : null}
 
-          { this.state.objModalVisible === true ?
+          {this.state.objModalVisible === true ? (
             <Modal visible={this.state.objModalVisible}>
               <View>
                 <Image
@@ -240,22 +291,31 @@ export default class AssetScreen extends Component {
                   }}
                 />
                 {this.objModal()}
-                <View style={{ marginTop: 22}}>
+                <View style={{ marginTop: 22 }}>
                   <View style={{ marginTop: "-60%", height: 60 }}>
                     <TouchableOpacity
                       onPress={() => {
-                        this.setState({objModalVisible: false});
+                        this.setState({ objModalVisible: false });
                       }}
                     >
-                      <Text style={{color: 'white', fontSize: '20', fontWeight: 'bold', marginTop: '-5%', marginLeft: '3%'}}> {"[Cancel]"} </Text>
+                      <Text
+                        style={{
+                          color: "white",
+                          fontSize: "20",
+                          fontWeight: "bold",
+                          marginTop: "-5%",
+                          marginLeft: "3%"
+                        }}
+                      >
+                        {" "}
+                        {"[Cancel]"}{" "}
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </View>
               </View>
-          </Modal>
-          :
-          null
-          }
+            </Modal>
+          ) : null}
 
           <View style={styles.addButtonContainer}>
             <Text
@@ -354,6 +414,6 @@ const styles = StyleSheet.create({
     marginTop: "-60%",
     backgroundColor: "blue",
     width: 100,
-    height: 60,
+    height: 60
   }
 });
