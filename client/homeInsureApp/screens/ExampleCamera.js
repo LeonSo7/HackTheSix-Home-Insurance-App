@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {
   Text,
   View,
@@ -11,11 +11,11 @@ import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
 import { Icon } from "react-native-elements";
 
-export default class CameraExample extends React.Component {
+export default class ExampleCamera extends Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
-    photo64: "badddd",
+    photo64: "bad",
     photoUri: null,
     status: "picture not taken"
   };
@@ -26,8 +26,6 @@ export default class CameraExample extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.status);
-    console.log(this.state.photoUri)
   }
 
   async snap() {
@@ -98,7 +96,6 @@ export default class CameraExample extends React.Component {
           <TouchableOpacity onPress={this.snap.bind(this)}>
             <View style={styles.snapButton} opacity={0.2}></View>
           </TouchableOpacity>
-          <Text>status:{this.state.status}</Text>
           <View>
         <Image
         style={{
@@ -107,6 +104,10 @@ export default class CameraExample extends React.Component {
           }}
           source={{uri: `data:image/jpg;base64,${this.state.photo64}`}}
         />
+        <TouchableOpacity style={styles.customBtnBG1} onPress={() => 
+        {if (this.state.photo64 != "bad"){this.props.navigation.navigate("ClaimForm", {photo: this.state.photo64})}}}>
+              <Text style={styles.customBtnText}>Create Claim</Text>
+            </TouchableOpacity>
         </View>
         </View>
       );
@@ -127,5 +128,36 @@ const styles = StyleSheet.create({
     marginTop: "-23%",
     marginLeft: (Dimensions.get("window").width - 100) / 2,
     alignItems: "center"
+  },
+  buttons: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    margin: "2%",
+    marginTop: "10%",
+    // marginTop: (Dimensions.get("window").height * 4) / 10,
+    height: (Dimensions.get("window").height * 95) / 100,
+    width: Dimensions.get("window").width - 2
+  },
+  customBtnText: {
+    fontSize: 25,
+    fontWeight: "400",
+    textAlign: "center",
+    color: "#1A90F5"
+  },
+  customBtnBG1: {
+    backgroundColor: "white",
+    borderRadius: 5,
+    borderWidth: 0.5,
+    borderColor: "#CBC9C9",
+    width: (Dimensions.get("window").width * 9) / 20,
+    marginRight: "0%",
+    marginLeft: "2%",
+    marginBottom: "%",
+    marginTop: "-50%",
+    height: (Dimensions.get("window").width * 9) / 20,
+    shadowOffset: { width: 1, height: 4 },
+    shadowOpacity: 0.8,
+    shadowColor: "#8C8C8C"
   }
 });
