@@ -28,6 +28,10 @@ export default class ProfileScreen extends Component {
           }}
           source={require("../assets/images/ClaimsHeader.png")}
         />
+        <TouchableOpacity style={styles.back} onPress={() => 
+        {this.props.navigation.navigate("Main")}}>
+              <Text style={styles.customBtnText}>Back</Text>
+            </TouchableOpacity> 
         <View>
           <Text>Hello Jarod,</Text>
         </View>
