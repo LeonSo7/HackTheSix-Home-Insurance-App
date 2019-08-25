@@ -59,6 +59,10 @@ export default class ClaimsScreen extends Component {
           }}
           source={require("../assets/images/ClaimsHeader.png")}
         />
+        <TouchableOpacity style={styles.back} onPress={() => 
+        {this.props.navigation.navigate("Main")}}>
+              <Text style={styles.customBtnText}>Back</Text>
+            </TouchableOpacity> 
         <View>
           <Text style={{ margin: "10%", alignItems: "center", fontSize: 25 }}>
             Take a photo to submit a claim
