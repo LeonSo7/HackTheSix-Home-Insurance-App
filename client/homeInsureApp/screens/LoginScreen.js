@@ -26,7 +26,7 @@ export default class App extends Component {
   }
 
   onLogin() {
-    // this.setState({enteredPass: this.state.password});
+    this.setState({enteredPass: this.state.password});
     this.props.navigation.navigate("Main");
   }
 

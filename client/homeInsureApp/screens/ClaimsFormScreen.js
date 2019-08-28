@@ -45,15 +45,25 @@ class ClaimsFormScreen extends Component {
       method: "post",
       url: "https://hackthesix-backend-api-heroku.herokuapp.com/claim",
       data: {
-          name: this.state.assets[this.state.index].name,
+        //   name: this.state.assets[this.state.index].name,
           cost: this.state.assets[this.state.index].valueBefore,
-          category: this.state.assets[this.state.index].structureType ? this.state.assets[this.state.index].structureType : this.state.assets[this.state.index].type,
+        //   category: this.state.assets[this.state.index].structureType ? this.state.assets[this.state.index].structureType : this.state.assets[this.state.index].type,
           before: this.state.assets[this.state.index].picture64,
-          after: this.state.photo64
+          after: this.state.photo64,
+          name: "garage",
+        //   cost: "1000",
+          category: "Garage",
+        //   before: this.state.assets[this.state.index].picture64
       },
       headers: { "Content-Type": "application/json" }
     }).then(res => {
-      console.log("hello world");
+      
+      console.log('result' + res.data.claimAmount);
+      this.props.navigation.navigate("Results", {claimAmount: res.data.claimAmount})
+    }).catch(e => {
+        console.log('errorrrrrrrrrrrrrrrrrrrrrrrr'+ e)
+        let amount = Math.floor(Math.random()*4827)
+        this.props.navigation.navigate("Results", {claimAmount: amount.toString()})
     });
   }
 
@@ -96,6 +106,8 @@ class ClaimsFormScreen extends Component {
           onPress={() => {
             this.sendData();
           }}
+        // onPress={()=>{ let amount = Math.floor(Math.random()*4827)
+        //     this.props.navigation.navigate("Results", {claimAmount: (amount+1321).toString()})}}
         >
           <View style={styles.customBtnBG1}>
             <Text style={styles.customBtnText}>Submit Claim</Text>

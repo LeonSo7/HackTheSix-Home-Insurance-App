@@ -117,7 +117,7 @@ class AssetScreen extends Component {
       name: this.state.name,
       type: this.state.type,
       structure: this.state.structure,
-      cost: this.state.cost,
+      cost: this.state.cost.toString(),
       id: this.state.totalNumber,
       picture64: this.state.picture64
     };

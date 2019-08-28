@@ -9,7 +9,7 @@ const initialState = {
       type: "Item",
       picture64: "abc",
       structureType: "Garage",
-      valueBefore: 10,
+      valueBefore: "10393",
       afterPicture64: "xyz"
     },
     {
@@ -19,7 +19,7 @@ const initialState = {
       picture64: "qwer",
       type: "Item",
       structureType: null,
-      valueBefore: 10,
+      valueBefore: "6300",
       afterPicture64: "asdf"
     }
   ]
